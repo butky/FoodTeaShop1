@@ -38,6 +38,10 @@ namespace FoodTeaShop1.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Login with facebook
+        /// </summary>
+        /// <returns></returns>
         public ActionResult LoginFacebook()
         {
             var fb = new FacebookClient();
