@@ -1,0 +1,82 @@
+﻿@model List<Model.EF.Menu>
+
+
+
+<div class="header-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-md-4 col-xs-12">
+
+                <!-- Menu Top -->
+               
+                <!-- Ngôn ngữ -->
+                <div class="language-currency-wrapper">
+                    <div class="inner-cl">
+                        <div class="block block-language form-language">
+                            <div class="lg-cur"><span><img src="/assets/client/images/flag-default.jpg" alt="French"><span class="lg-fr">French</span><i class="fa fa-angle-down"></i></span></div>
+                            <ul>
+                                <li><a class="selected" href="#"><img src="/assets/client/images/flag-english.jpg" alt="english"><span>English</span></a></li>
+                                <li><a href="#"><img src="/assets/client/images/flag-default.jpg" alt="French"><span>French</span></a></li>
+                                <li><a href="#"><img src="/assets/client/images/flag-german.jpg" alt="German"><span>German</span></a></li>
+                                <li><a href="#"><img src="/assets/client/images/flag-brazil.jpg" alt="Brazil"><span>Brazil</span></a></li>
+                                <li><a href="#"><img src="/assets/client/images/flag-chile.jpg" alt="Chile"><span>Chile</span></a></li>
+                                <li><a href="#"><img src="/assets/client/images/flag-spain.jpg" alt="Spain"><span>Spain</span></a></li>
+                            </ul>
+                        </div>
+                        <div class="block block-currency">
+                            <div class="item-cur"><span>USD</span><i class="fa fa-angle-down"></i></div>
+                            <ul>
+                                <li><a href="#"><span class="cur_icon">€</span>EUR</a></li>
+                                <li><a href="#"><span class="cur_icon">¥</span>JPY</a></li>
+                                <li><a class="selected" href="#"><span class="cur_icon">$</span>USD</a></li>
+                            </ul>
+                        </div>
+                        <div class="block block-currency">
+                            <div class="item-cur"> <span class="phone  hidden-xs hidden-sm">+ 0931693057</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- top links -->
+            <div class="headerlinkmenu col-md-8 col-sm-8 col-xs-12">
+               
+                <ul class="links">
+                    <li class="hidden-xs"><a title="Help Center" href="#"><span>Trợ giúp</span></a></li>
+                    <li><a title="Store Locator" href="#"><span>Cửa hàng</span></a></li>
+                    <li><a title="Checkout" href="checkout.html"><span>Kiểm tra</span></a></li>
+                    @{
+                                      var session = (UserLogin)Session[FoodTeaShop1.Common.CommonConstants.USER_SESSION];
+                    }
+                    @if (session == null)
+                    {
+                        <li><a title="login" href="/dang-nhap"><span>Đăng nhập</span></a></li>
+                        <li><a title="login" href="/dang-ky"><span>Đăng ký</span></a></li>
+
+                    }
+                    else
+                    {
+                        <li>
+                            <div class="dropdown">
+                                <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                                <span><i class="icon-user icons"></i>&nbsp; @session.UserName</span> <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="account_page.html">Tài Khoản</a></li>
+                                    <li><a href="wishlist.html">Ưa Thích</a></li>
+                                    <li><a href="orders_list.html">Sản Phẩm</a></li>
+                                    <li><a href="about_us.html">Thông Tin</a></li>
+                                    <li class="divider"></li>
+                                    <li>@Html.ActionLink("Thoát", "Logout", "User")</li>
+                                </ul>
+                            </div>
+                        </li>
+                    }
+
+
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>

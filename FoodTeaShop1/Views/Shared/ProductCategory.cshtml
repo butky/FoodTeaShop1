@@ -1,0 +1,42 @@
+﻿@model List<Model.EF.ProductCategory>
+
+
+ 
+
+<div class="col-md-3 col-sm-3 mega-container hidden-xs">
+    <div class="navleft-container">
+        <div class="mega-menu-title">
+            <h3><span>Danh Mục</span></h3>
+        </div>
+
+        <!-- Shop by category -->
+        <div class="mega-menu-category">
+            <ul class="nav">
+                @foreach (var item in Model.Where(x => x.ParentID == null))
+                {
+                    var child = Model.Where(x => x.ParentID == item.ID);
+                    var parentClass = child.Count() > 0;
+                    <li>
+                        <a href="/san-pham/@item.MetaTittle-@item.ID">@item.Name</a>
+                        <div class="wrap-popup column1">
+                            <div class="popup">
+                                @if (child.Count() > 0)
+                                {
+                                    <ul class="nav">
+                                        @foreach (var childItem in child)
+                                        {
+                                            <li><a href="/san-pham/@item.MetaTittle-@childItem.ID"><span>@childItem.Name</span></a></li>
+
+                                        }
+                                    </ul>
+                                }
+
+                            </div>
+                        </div>
+                    </li>
+
+                }
+            </ul>
+        </div>
+    </div>
+</div>

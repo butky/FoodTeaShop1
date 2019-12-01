@@ -1,0 +1,49 @@
+﻿@model List<FoodTeaShop1.Models.CartItem>
+
+@section jsFooter{
+
+    <script src="~/assets/client/js/controller/cartController.js"></script>
+}
+
+
+<div class="top-cart-contain">
+    <div class="mini-cart">
+        <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle">
+            <a href="/gio-hang">
+                <div class="cart-icon"><i class="icon-basket-loaded icons"></i><span class="cart-total">@Model.Count</span></div>
+                <div class="shoppingcart-inner hidden-xs"><span class="cart-title">Giỏ hàng</span> </div>
+            </a>
+        </div>
+        <div>
+            <div class="top-cart-content">
+                <div class="block-subtitle hidden">Recently added items</div>
+                <ul id="cart-sidebar" class="mini-products-list">
+                    @foreach (var item in Model)
+                    {
+                        <li class="item odd">
+                            <a href="@item.Product.Image" title="Product title here" class="product-image">
+                                <img src="@item.Product.Image" alt="html Template" width="65">
+                            </a>
+                            <div class="product-details">
+                                <!-- Xóa SP -->
+                                 
+                                    <a href="#" title="Remove This Item" class="remove-cart" data-id="@item.Product.ID"><i class="pe-7s-trash"></i></a>
+                                   
+                                    <!--End-->
+                                    <p class="product-name"><a href="shopping_cart.html">@item.Product.Name</a> </p>
+                                    <strong>@item.Quantity</strong> x <span class="price">@item.Product.Price.GetValueOrDefault(0).ToString("N0")</span>
+                            </div>
+                        </li>
+                    }
+                </ul>
+                <div class="top-subtotal">Tổng tiền: <span class="price">ss</span></div>
+                <div class="actions">
+
+                    <button class="view-cart" type="button" onClick="location.href='/gio-hang'">
+                        <i class="fa fa-shopping-cart"></i><span>Xem giỏ hàng</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+﻿@model List<FoodTeaShop1.Models.CartItem>
+@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section jsFooter{
+
+    <script src="~/assets/client/js/controller/cartController.js"></script>
+}
+
+
+
+<section class="main-container col1-layout">
+    <div class="main container">
+        <div class="col-main">
+            <div class="cart">
+                @if (Model.Count > 0)
+                {
+                    <div class="page-content page-order">
+                        <div class="page-title">
+                            <h2>Giỏ Hàng</h2>
+                        </div>
+
+
+                        <div class="order-detail-content">
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered cart_summary">
+                                    <thead>
+                                        <tr>
+                                            <th>Sản Phẩm</th>
+                                            <th>Thông tin</th>
+                                            <th>Trạng thái</th>
+                                            <th>Giá</th>
+                                            <th>Số lượng</th>
+                                            <th>Thành tiền</th>
+                                            <th class="action"><i class="fa fa-trash-o"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            var url = "/chi-tiet/" + item.Product.MetaTitle + "-" + item.Product.ID;
+                                            <tr>
+                                                <td class="cart_product"><a href="@url"><img src="@item.Product.Image" alt="Product"></a></td>
+                                                <td class="cart_description">
+                                                    <p class="product-name"><a href="#">@item.Product.Name</a></p>
+                                                    <small><a href="#">Color : Red</a></small>
+                                                    <small><a href="#">Size : M</a></small>
+                                                </td>
+                                                <td class="availability in-stock"><span class="label">@item.Product.Status</span></td>
+                                                <td class="price"><span>@item.Product.Price.GetValueOrDefault(0).ToString("N0")</span></td>
+                                                <td class="qty">
+                                                    <input type="number" class="txtQuantity" data-id="@item.Product.ID" value="@item.Quantity" />
+                                                </td>
+                                                <td class="price"><span>@((item.Product.Price.GetValueOrDefault(0) * item.Quantity).ToString("N0"))</span></td>
+                                                <td class="action"><a class="btn_btn-danger" data-id="@item.Product.ID"><i class="icon-close"></i></a></td>
+                                            </tr>
+
+                                        }
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="2" rowspan="2"></td>
+                                            <td colspan="3">Total products (tax incl.)</td>
+                                            <td colspan="2">$237.88 </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3"><strong>Total</strong></td>
+                                            <td colspan="2"><strong>$237.88 </strong></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+                            </div>
+
+                            <div class="cart_navigation">
+                                <center>
+                                    <a class="btn btn-warning" id="btnContinue"><i class="fa fa-arrow-left"> </i>&nbsp; Tiếp tục mua hàng</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a class="btn btn-info" id="btnUpdate"><i class="fa fa-refresh"> </i>&nbsp; Cập nhật</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a class="btn btn-danger" id="btnDeleteAll"><i class="fa fa-trash-o"> </i>&nbsp; Xóa tất cả</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a class="btn btn-success" id="btnPayment"><i class="fa fa-check"></i> Thanh toán</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <span class="alert alert-danger">chưa có sản phẩm nào trong giỏ hàng</span>
+                }
+            </div>
+
+        </div>
+    </div>
+</section>
