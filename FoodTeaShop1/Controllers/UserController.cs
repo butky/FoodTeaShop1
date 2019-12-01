@@ -97,7 +97,10 @@ namespace FoodTeaShop1.Controllers
             return Redirect("/");
         }
 
-
+        /// <summary>
+        /// Logout
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Logout()
         {
             Session[CommonConstants.USER_SESSION] = null;
